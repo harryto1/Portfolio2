@@ -52,10 +52,13 @@ const About: React.FC = () => {
           {/* Personal Introduction */}
           <div className={styles.introSection}>
             <div className={styles.aboutText}>
-              <p>I'm a <strong>2nd</strong> year student at University of Puerto Rico - Mayagüez. I have a passion for coding, problem-solving, math, and science. I'm eager to learn the most I can, and work to gain expertise about software engineering since my goal is to become an AI researcher/engineer.</p>
-              <p>I'm currently pursuing coursework in <i>Data Structures</i> and work at <strong>MiUni LLC</strong> developing mobile applications. My eagerness to learn has driven me to learn outside the classroom new languages and frameworks that help me grow as a developer.</p>
+              <p>
+                I am a <strong>second-year Software Engineering student</strong> at the <a href="https://www.uprm.edu" target="_blank" rel="noopener noreferrer" className={styles.introLink}>University of Puerto Rico – Mayagüez</a>, with strong interests in <span className={styles.introEmphasis}>coding</span>, <span className={styles.introEmphasis}>problem-solving</span>, <span className={styles.introEmphasis}>mathematics</span>, and <span className={styles.introEmphasis}>science</span>. My long-term goal is to pursue a career as an <strong>AI researcher and engineer</strong>, and I am committed to building the technical expertise needed to achieve it.
+              </p>
+              <p>
+                Currently, I am advancing my knowledge through coursework in <strong>Data Structures</strong> and gaining hands-on industry experience as a <i>software developer</i> at <strong>MiUni LLC</strong>. Beyond the classroom, I continuously explore <strong>new programming languages</strong> and <strong>frameworks</strong>, driven by a passion for <i>learning</i> and <i>growth</i> as a developer.
+              </p>
             </div>
-
             <div className={styles.aboutStats}>
               <div className={styles.stat}>
                 <h3>2+</h3>

@@ -67,7 +67,7 @@ const Header: React.FC = () => {
     <header className={styles.header}>
       <div className={styles.container}>
         <div className={styles.logo}>
-          <h2>Harry Ruiz</h2>
+            <Link to="home" smooth={true} duration={500} className={styles.logoLink}>Harry Ruiz</Link>
         </div>
         
         {!isMobile && (

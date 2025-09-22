@@ -25,6 +25,15 @@
   margin: 0;
 }
 
+.logo .logoLink {
+  color: #4f46e5;
+  font-size: 1.5rem;
+  margin: 0;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
 /* Desktop Navigation */
 .desktopNav ul {
   list-style: none;
