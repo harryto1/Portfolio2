@@ -1,0 +1,356 @@
+/* Modal Overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modalContent {
+  background: white;
+  border-radius: 16px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.closeButton {
+    padding: 0 0;
+    margin: 0;
+    padding-inline: 0;
+    padding-block: 0;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 10;
+    color: #6b7280;
+    line-height: 1;
+    font-family: 'Arial', sans-serif;
+
+}
+
+.closeButton:hover {
+  background: #e5e7eb;
+  color: #374151;
+  transform: scale(1.1);
+}
+
+/* Modal Header */
+.modalHeader {
+  position: relative;
+  padding: 0;
+}
+
+.modalImage {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+}
+
+.modalHeaderInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 40px 32px 24px;
+  border-radius: 0 0 0 0;
+}
+
+.modalTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.projectMeta {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metaLabel {
+  font-size: 0.875rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.metaValue {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Modal Body */
+.modalBody {
+  padding: 32px;
+}
+
+.section {
+  margin-bottom: 32px;
+  padding: 0;
+}
+
+.section:last-child {
+  margin-bottom: 0;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.detailedDescription {
+  color: #4b5563;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* Tech Section */
+.techSection {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+}
+
+.techCategory h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 12px;
+}
+
+.techTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.techTag {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.languageTag {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  color: #dc2626;
+  border-color: #f87171;
+}
+
+.frameworkTag {
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  color: #2563eb;
+  border-color: #60a5fa;
+}
+
+.technologyTag {
+  background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+  color: #059669;
+  border-color: #34d399;
+}
+
+.techTag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Lists */
+.featureList,
+.challengeList,
+.learningList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.featureItem,
+.challengeItem,
+.learningItem {
+  padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+  position: relative;
+  padding-left: 24px;
+  color: #4b5563;
+  line-height: 1.6;
+}
+
+.featureItem:last-child,
+.challengeItem:last-child,
+.learningItem:last-child {
+  border-bottom: none;
+}
+
+.featureItem::before {
+  content: '✨';
+  position: absolute;
+  left: 0;
+  top: 12px;
+}
+
+.challengeItem::before {
+  content: '⚡';
+  position: absolute;
+  left: 0;
+  top: 12px;
+}
+
+.learningItem::before {
+  content: '💡';
+  position: absolute;
+  left: 0;
+  top: 12px;
+}
+
+/* Modal Footer */
+.modalFooter {
+  padding: 24px 32px;
+  background: #f9fafb;
+  border-radius: 0 0 16px 16px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  border-top: 1px solid #e5e7eb;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  min-width: 140px;
+  justify-content: center;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4);
+}
+
+.btnPrimary:hover {
+  background: linear-gradient(135deg, #4338ca, #6d28d9);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.5);
+}
+
+.btnSecondary {
+  background: white;
+  color: #4f46e5;
+  border: 2px solid #4f46e5;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.1);
+}
+
+.btnSecondary:hover {
+  background: #4f46e5;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modalContent {
+    margin: 10px;
+    max-height: 95vh;
+  }
+  
+  .modalBody {
+    padding: 24px 20px;
+  }
+  
+  .modalFooter {
+    padding: 20px;
+    flex-direction: column;
+  }
+  
+  .modalTitle {
+    font-size: 1.5rem;
+  }
+  
+  .projectMeta {
+    gap: 16px;
+  }
+  
+  .techSection {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .modalHeaderInfo {
+    padding: 24px 20px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modalOverlay {
+    padding: 10px;
+  }
+  
+  .modalImage {
+    height: 200px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}

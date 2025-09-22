@@ -1,0 +1,113 @@
+/* Skills Section */
+.skills {
+  background: #f9fafb;
+  padding: 80px 0;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.sectionTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: #1f2937;
+  position: relative;
+}
+
+.sectionTitle::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #4f46e5;
+  margin: 1rem auto;
+  border-radius: 2px;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.skillCategory {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.categoryTitle {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+  text-align: center;
+}
+
+.skillItem {
+  margin-bottom: 1.5rem;
+}
+
+.skillHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.skillName {
+  font-weight: 600;
+  color: #374151;
+}
+
+.skillPercentage {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+.skillBar {
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.skillProgress {
+  height: 100%;
+  background: linear-gradient(90deg, #4f46e5 0%, #7c3aed 100%);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.skillProgress[data-width="90"] { width: 90%; }
+.skillProgress[data-width="95"] { width: 95%; }
+.skillProgress[data-width="85"] { width: 85%; }
+.skillProgress[data-width="80"] { width: 80%; }
+.skillProgress[data-width="75"] { width: 75%; }
+.skillProgress[data-width="70"] { width: 70%; }
+.skillProgress[data-width="65"] { width: 65%; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .skillsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills {
+    padding: 60px 0;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  
+  .container {
+    padding: 0 15px;
+  }
+}

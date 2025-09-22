@@ -1,0 +1,35 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  scroll-behavior: smooth;
+}
+
+/* Global container class for shared use */
+.container {
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Global section styles */
+section {
+  padding: 80px 0;
+}
+
+/* Global responsive adjustments */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  section {
+    padding: 60px 0;
+  }
+}
