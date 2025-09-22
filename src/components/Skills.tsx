@@ -9,17 +9,13 @@ const Skills: React.FC = () => {
         { name: "React", level: 90 },
         { name: "TypeScript", level: 85 },
         { name: "HTML/CSS", level: 95 },
-        { name: "Vue.js", level: 75 },
-        { name: "Tailwind CSS", level: 80 }
+        { name: "Javascript", level: 75 },
       ]
     },
     {
       category: "Backend",
       skills: [
-        { name: "Node.js", level: 85 },
-        { name: "Python", level: 80 },
-        { name: "Express.js", level: 85 },
-        { name: "MongoDB", level: 75 },
+        { name: "Flask", level: 80 },
         { name: "PostgreSQL", level: 70 }
       ]
     },
@@ -27,10 +23,7 @@ const Skills: React.FC = () => {
       category: "Tools & Others",
       skills: [
         { name: "Git", level: 90 },
-        { name: "Docker", level: 70 },
-        { name: "AWS", level: 65 },
-        { name: "Figma", level: 80 },
-        { name: "Jest", level: 75 }
+        { name: "Firebase", level: 80 },
       ]
     }
   ];

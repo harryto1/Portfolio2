@@ -107,10 +107,6 @@ const Contact: React.FC = () => {
                     <span className={styles.socialIcon}>💻</span>
                     GitHub
                   </a>
-                  <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
-                    <span className={styles.socialIcon}>💼</span>
-                    LinkedIn
-                  </a>
                 </div>
               </div>
             </div>
