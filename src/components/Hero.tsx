@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-scroll';
+import { ReactTyped } from 'react-typed';
 import styles from './css/Hero.module.css';
 
 const Hero: React.FC = () => {
@@ -8,7 +9,15 @@ const Hero: React.FC = () => {
       <div className={styles.container}>
         <div>
           <h1 className={styles.heroTitle}>
-            Hi, I'm <span className={styles.highlight}>Harry Ruiz</span>
+            Hi, I'm <span className={styles.highlight}>
+              <ReactTyped
+                strings={["Harry Ruiz", "a Software Developer", "a Student"]}
+                typeSpeed={70}
+                backSpeed={60}
+                backDelay={2000}
+                loop
+              />
+            </span>
           </h1>
           <p className={styles.heroSubtitle}>Software Engineering Student</p>
           <p className={styles.heroDescription}>
