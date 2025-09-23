@@ -5,9 +5,7 @@ import styles from './css/Hero.module.css';
 import profileImg from '../assets/harry.jpg';
 
 const Hero: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [shouldStartTyping, setShouldStartTyping] = useState(false);
-  const [isInViewport, setIsInViewport] = useState(true);
+  const [isInViewport, setIsInViewport] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -20,17 +18,10 @@ const Hero: React.FC = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsInViewport(entry.isIntersecting);
-        
-        if (entry.isIntersecting && !isVisible) {
-          setIsVisible(true);
-          setTimeout(() => {
-            setShouldStartTyping(true);
-          }, 500);
-        }
       },
       { 
         threshold: getThreshold(),
-        rootMargin: '0px 0px 50px 0px' 
+        rootMargin: '50px 0px 50px 0px'
       }
     );
 
@@ -41,33 +32,13 @@ const Hero: React.FC = () => {
     return () => {
       observer.disconnect();
     };
-  }, [isVisible]);
-
-  useEffect(() => {
-    const checkInitialVisibility = () => {
-      if (heroRef.current) {
-        const rect = heroRef.current.getBoundingClientRect();
-        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-        
-        if (isInView) {
-          setIsVisible(true);
-          setIsInViewport(true);
-          setShouldStartTyping(true);
-        }
-      }
-    };
-
-    checkInitialVisibility();
-    const timer = setTimeout(checkInitialVisibility, 100);
-    
-    return () => clearTimeout(timer);
   }, []);
 
   return (
     <section ref={heroRef} id="home" className={styles.hero}>
       <div className={styles.container}>
         <div className={styles.heroContent}>
-          <div className={`${styles.heroImage} ${isVisible ? styles.fadeInRight : ''}`}>
+          <div className={`${styles.heroImage} ${isInViewport ? styles.fadeInRight : ''}`}>
             <div className={styles.imageContainer}>
               <img 
                 src={profileImg}
@@ -76,10 +47,10 @@ const Hero: React.FC = () => {
               />
             </div>
           </div>
-          <div className={`${styles.heroText} ${isVisible ? styles.fadeInLeft : ''}`}>
+          <div className={`${styles.heroText} ${isInViewport ? styles.fadeInLeft : ''}`}>
             <h1 className={styles.heroTitle}>
               Hi, I'm <span className={styles.highlight}>
-                {shouldStartTyping && isInViewport ? (
+                {isInViewport ? (
                   <ReactTyped
                     strings={["Harry Ruiz", "a Software Developer", "a Student"]}
                     typeSpeed={70}
@@ -88,7 +59,6 @@ const Hero: React.FC = () => {
                     loop
                     showCursor={true}
                     cursorChar="|"
-                    stopped={!isInViewport}
                   />
                 ) : (
                   <span className={styles.staticText}>Harry Ruiz</span>
