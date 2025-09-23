@@ -36,10 +36,15 @@
   gap: 4rem;
   align-items: center;
   min-height: 70vh;
+  position: relative;
+  z-index: 3;
 }
 
 .heroText {
   text-align: left;
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .heroTitle {
@@ -81,6 +86,22 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  z-index: 3;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fadeInLeft {
+  opacity: 1;
+  transform: translateX(0);
+  animation: fadeInLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.fadeInRight {
+  opacity: 1;
+  transform: translateX(0);
+  animation: fadeInRight 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 .imageContainer {
@@ -90,6 +111,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transform: scale(0.9);
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+}
+
+.fadeInRight .imageContainer {
+  transform: scale(1);
 }
 
 .profileImage {
@@ -98,15 +125,22 @@
   border-radius: 50%;
   object-fit: cover;
   border: 6px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.1);
   position: relative;
   z-index: 3;
-  transition: transform 0.3s ease;
+  transition: box-shadow 0.5s ease, transform 0.3s ease;
   animation: float 6s ease-in-out infinite;
+  transform: scale(0.95);
+}
+
+.fadeInRight .profileImage {
+  transform: scale(1);
 }
 
 .profileImage:hover {
   transform: scale(1.05);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 50px rgba(255, 255, 255, 0.2);
+  transition: box-shadow 0.5s ease, transform 0.3s ease;
 }
 
 .imageBackground {
@@ -178,6 +212,18 @@
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
 }
 
+.placeholder {
+  display: inline-block;
+  opacity: 0.7;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.highlight .typed-cursor {
+  color: #fbbf24;
+  font-weight: 400;
+  animation: blink 1s infinite;
+}
+
 /* Animations */
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
@@ -200,6 +246,46 @@
   }
 }
 
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 968px) {
   .heroContent {
@@ -211,10 +297,12 @@
   .heroText {
     text-align: center;
     order: 2;
+    transform: translateY(30px);
   }
   
   .heroImage {
     order: 1;
+    transform: translateY(-30px);
   }
   
   .imageContainer {
@@ -231,6 +319,25 @@
     width: 270px;
     height: 270px;
   }
+
+  .fadeInLeft {
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  .fadeInRight {
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }
 
 @media (max-width: 768px) {
@@ -243,8 +350,19 @@
   }
   
   .heroButtons {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s;
     justify-content: center;
   }
+
+.fadeInLeft .heroButtons {
+  opacity: 1;
+  transform: translateY(0);
+}
   
   .imageContainer {
     width: 240px;
@@ -310,5 +428,27 @@
   
   .floatingElement {
     font-size: 1.2rem;
+  }
+
+    /* Simplified animations for mobile */
+  .heroText,
+  .heroImage {
+    transform: translateY(20px);
+  }
+  
+  .fadeInLeft,
+  .fadeInRight {
+    animation: fadeInUpMobile 0.6s ease forwards;
+  }
+  
+  @keyframes fadeInUpMobile {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }

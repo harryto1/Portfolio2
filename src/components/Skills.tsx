@@ -42,21 +42,70 @@ const Skills: React.FC = () => {
   ];
 
   useEffect(() => {
+    const getThreshold = () => {
+      if (window.innerWidth <= 480) return 0.1; 
+      if (window.innerWidth <= 768) return 0.15; 
+      return 0.3; 
+    };
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.3 }
+      { 
+        threshold: getThreshold(),
+        rootMargin: '0px 0px -50px 0px'
+      }
     );
 
     if (skillsRef.current) {
       observer.observe(skillsRef.current);
     }
 
-    return () => observer.disconnect();
-  }, []);
+    // Handle window resize to update threshold
+    const handleResize = () => {
+      if (skillsRef.current && !isVisible) {
+        observer.unobserve(skillsRef.current);
+        observer.disconnect();
+        
+        const newObserver = new IntersectionObserver(
+          ([entry]) => {
+            if (entry.isIntersecting) {
+              setIsVisible(true);
+              newObserver.unobserve(entry.target);
+            }
+          },
+          { 
+            threshold: getThreshold(),
+            rootMargin: '0px 0px -50px 0px'
+          }
+        );
+        
+        newObserver.observe(skillsRef.current);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isVisible]);
+
+  // Fallback
+  useEffect(() => {
+    const fallbackTimer = setTimeout(() => {
+      if (!isVisible) {
+        setIsVisible(true);
+      }
+    }, 2000);
+
+    return () => clearTimeout(fallbackTimer);
+  }, [isVisible]);
 
   return (
     <section ref={skillsRef} id="skills" className={styles.skills}>
@@ -90,6 +139,9 @@ const Skills: React.FC = () => {
                     className={styles.skillItem}
                     onMouseEnter={() => setHoveredSkill(skill.name)}
                     onMouseLeave={() => setHoveredSkill(null)}
+                    // Add touch support for mobile
+                    onTouchStart={() => setHoveredSkill(skill.name)}
+                    onTouchEnd={() => setHoveredSkill(null)}
                   >
                     <div className={styles.skillHeader}>
                       <div className={styles.skillInfo}>

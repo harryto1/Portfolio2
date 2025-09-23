@@ -1,15 +1,73 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-scroll';
 import { ReactTyped } from 'react-typed';
 import styles from './css/Hero.module.css';
 import profileImg from '../assets/harry.jpg';
 
 const Hero: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [shouldStartTyping, setShouldStartTyping] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const getThreshold = () => {
+      if (window.innerWidth <= 480) return 0.1;
+      if (window.innerWidth <= 768) return 0.2;
+      return 0.3;
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          setTimeout(() => {
+            setShouldStartTyping(true);
+          }, 500);
+          observer.unobserve(entry.target);
+        }
+      },
+      { 
+        threshold: getThreshold(),
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    if (heroRef.current) {
+      observer.observe(heroRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
+    const checkInitialVisibility = () => {
+      if (heroRef.current) {
+        const rect = heroRef.current.getBoundingClientRect();
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        if (isInView) {
+          setIsVisible(true);
+          setShouldStartTyping(true);
+        }
+      }
+    };
+
+    // On mount
+    checkInitialVisibility();
+    
+    // Check after a short delay in case of slow loading
+    const timer = setTimeout(checkInitialVisibility, 100);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <section id="home" className={styles.hero}>
+    <section ref={heroRef} id="home" className={styles.hero}>
       <div className={styles.container}>
         <div className={styles.heroContent}>
-          <div className={styles.heroImage}>
+          <div className={`${styles.heroImage} ${isVisible ? styles.fadeInRight : ''}`}>
             <div className={styles.imageContainer}>
               <img 
                 src={profileImg}
@@ -18,16 +76,22 @@ const Hero: React.FC = () => {
               />
             </div>
           </div>
-          <div className={styles.heroText}>
+          <div className={`${styles.heroText} ${isVisible ? styles.fadeInLeft : ''}`}>
             <h1 className={styles.heroTitle}>
               Hi, I'm <span className={styles.highlight}>
-                <ReactTyped
-                  strings={["Harry Ruiz", "a Software Developer", "a Student"]}
-                  typeSpeed={70}
-                  backSpeed={60}
-                  backDelay={2000}
-                  loop
-                />
+                {shouldStartTyping ? (
+                  <ReactTyped
+                    strings={["Harry Ruiz", "a Software Developer", "a Student"]}
+                    typeSpeed={70}
+                    backSpeed={60}
+                    backDelay={2000}
+                    loop
+                    showCursor={true}
+                    cursorChar="|"
+                  />
+                ) : (
+                  <span className={styles.placeholder}>Harry Ruiz</span>
+                )}
               </span>
             </h1>
             <p className={styles.heroSubtitle}>Software Engineering Student</p>
