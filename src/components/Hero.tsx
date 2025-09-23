@@ -7,6 +7,7 @@ import profileImg from '../assets/harry.jpg';
 const Hero: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [shouldStartTyping, setShouldStartTyping] = useState(false);
+  const [isInViewport, setIsInViewport] = useState(true);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -18,17 +19,18 @@ const Hero: React.FC = () => {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        setIsInViewport(entry.isIntersecting);
+        
+        if (entry.isIntersecting && !isVisible) {
           setIsVisible(true);
           setTimeout(() => {
             setShouldStartTyping(true);
           }, 500);
-          observer.unobserve(entry.target);
         }
       },
       { 
         threshold: getThreshold(),
-        rootMargin: '0px 0px -100px 0px'
+        rootMargin: '50px 0px 50px 0px'
       }
     );
 
@@ -39,7 +41,7 @@ const Hero: React.FC = () => {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [isVisible]);
 
   useEffect(() => {
     const checkInitialVisibility = () => {
@@ -49,15 +51,13 @@ const Hero: React.FC = () => {
         
         if (isInView) {
           setIsVisible(true);
+          setIsInViewport(true);
           setShouldStartTyping(true);
         }
       }
     };
 
-    // On mount
     checkInitialVisibility();
-    
-    // Check after a short delay in case of slow loading
     const timer = setTimeout(checkInitialVisibility, 100);
     
     return () => clearTimeout(timer);
@@ -79,7 +79,7 @@ const Hero: React.FC = () => {
           <div className={`${styles.heroText} ${isVisible ? styles.fadeInLeft : ''}`}>
             <h1 className={styles.heroTitle}>
               Hi, I'm <span className={styles.highlight}>
-                {shouldStartTyping ? (
+                {shouldStartTyping && isInViewport ? (
                   <ReactTyped
                     strings={["Harry Ruiz", "a Software Developer", "a Student"]}
                     typeSpeed={70}
@@ -88,9 +88,10 @@ const Hero: React.FC = () => {
                     loop
                     showCursor={true}
                     cursorChar="|"
+                    stopped={!isInViewport}
                   />
                 ) : (
-                  <span className={styles.placeholder}>Harry Ruiz</span>
+                  <span className={styles.staticText}>Harry Ruiz</span>
                 )}
               </span>
             </h1>
