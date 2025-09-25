@@ -110,22 +110,26 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
         </div>
 
         <div className={styles.modalFooter}>
-          <a 
-            href={project.liveUrl} 
-            className={`${styles.btn} ${styles.btnPrimary}`} 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            🚀 Live Demo
-          </a>
-          <a 
-            href={project.githubUrl} 
-            className={`${styles.btn} ${styles.btnSecondary}`} 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            📂 View Code
-          </a>
+          {project.liveUrl && (
+            <a 
+              href={project.liveUrl} 
+              className={`${styles.btn} ${styles.btnPrimary}`} 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              🚀 Live Demo
+            </a>
+          )}
+          {project.githubUrl &&  (
+            <a 
+              href={project.githubUrl} 
+              className={`${styles.btn} ${styles.btnSecondary}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              📂 View Code
+            </a>
+          )}
         </div>
       </div>
     </div>

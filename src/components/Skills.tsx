@@ -35,7 +35,6 @@ const Skills: React.FC = () => {
       skills: [
         { name: "Git", level: 90, icon: "📚", description: "Version control system" },
         { name: "Firebase", level: 80, icon: "🔥", description: "Backend-as-a-Service platform" },
-        { name: "Docker", level: 65, icon: "🐳", description: "Containerization platform" },
         { name: "VS Code", level: 95, icon: "💻", description: "Code editor & IDE" },
       ]
     }
