@@ -1,4 +1,8 @@
 import faeBanner from "../../assets/faeBanner.png";
+import atabeiImg1 from "../../assets/atabei_img_3.png";
+import atabeiImg2 from "../../assets/atabei_img_2.png";
+import atabeiImg3 from "../../assets/atabei_img_1.png";
+import atabeiBanner from "../../assets/atabei_banner.png";
 
 export interface Project {
   id: number;
@@ -6,6 +10,7 @@ export interface Project {
   description: string;
   detailedDescription: string[];
   imageUrl: string;
+  imagePaths?: string[];
   technologies: string[];
   frameworks: string[];
   languages: string[];
@@ -67,7 +72,7 @@ const projectsInfo: Project[] = [
           "The design follows a modern, minimal style similar to Twitter, focusing on clean navigation and smooth user interactions across both Android and iOS.",
           "This project is currently not finished and I will continue development soon. This project was developed as part of a learning experience to deepen understanding of Flutter and Firebase, and is not intended for production use."
         ],
-        imageUrl: "https://libeo.com/wp-content/uploads/2021/05/application-mobile-performante.jpg",
+        imageUrl: atabeiBanner,
         technologies: ["Flutter","Bloc", "Dart", "Firebase"],
         frameworks: ["Flutter", "Bloc"],
         languages: ["Dart"],
@@ -75,6 +80,11 @@ const projectsInfo: Project[] = [
         githubUrl: "https://github.com/harryto1/atabei.git",
         startDate: "May 2025",
         developmentTime: "2 months",
+        imagePaths: [
+            atabeiImg1,
+            atabeiImg2,
+            atabeiImg3,
+        ],
         features: [
             "User authentication with Firebase Auth",
             "Timeline Feed",

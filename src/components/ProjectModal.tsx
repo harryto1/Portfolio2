@@ -17,6 +17,33 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
     }
   };
 
+  const GalleryItem: React.FC<{ src: string; alt: string }> = ({ src, alt }) => {
+    const [orientation, setOrientation] = React.useState<'landscape' | 'portrait' | 'square'>('landscape');
+    const isGif = src.toLowerCase().endsWith('.gif');
+
+    const handleLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+        const img = e.currentTarget;
+        const { naturalWidth: w, naturalHeight: h } = img;
+        if (!w || !h) return;
+        if (Math.abs(w - h) < w * 0.08) setOrientation('square');
+        else if (w > h) setOrientation('landscape');
+        else setOrientation('portrait');
+    };
+
+    return (
+      <div className={`${styles.galleryItem} ${styles[orientation]} ${isGif ? styles.gif : ''}`}>
+        <img
+          src={src}
+          alt={alt}
+          loading="lazy"
+          onLoad={handleLoad}
+          className={styles.galleryImage}
+          draggable={false}
+        />
+      </div>
+    );
+  };
+
   return (
     <div className={styles.modalOverlay} onClick={handleOverlayClick}>
       <div className={styles.modalContent}>
@@ -49,6 +76,17 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
                 <p className={styles.detailedDescription}>{desc}</p><br />
               </React.Fragment>
             ))}
+            {project.imagePaths && project.imagePaths.length > 0 && (
+              <div className={styles.imageGallery}>
+                {project.imagePaths.map((path, idx) => (
+                  <GalleryItem
+                    key={idx}
+                    src={path}
+                    alt={`${project.title} image ${idx + 1}`}
+                  />
+                ))}
+              </div>
+            )}
           </section>
 
           <section className={styles.section}>
