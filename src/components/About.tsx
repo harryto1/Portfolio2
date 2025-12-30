@@ -9,9 +9,9 @@ const About: React.FC = () => {
       companyUrl: "https://www.miunipr.com",
       logoUrl: "https://www.miunipr.com/favicon.ico",
       position: "Software Developer",
-      duration: "2025 - Present",
+      duration: "July 2025 - December 2025",
       location: "Puerto Rico",
-      description: "Developing mobile applications using modern frameworks and technologies. Collaborating with cross-functional teams to deliver high-quality mobile solutions.",
+      description: "Developed mobile applications using modern frameworks and technologies. Collaborated with cross-functional teams to deliver high-quality mobile solutions.",
       technologies: ["Flutter", "Dart", "Firebase", "Git"],
       achievements: [
         "Built responsive mobile applications for iOS and Android platforms.",
@@ -55,9 +55,9 @@ const About: React.FC = () => {
               <p>
                 I am a <strong>second-year Software Engineering student</strong> at the <a href="https://www.uprm.edu" target="_blank" rel="noopener noreferrer" className={styles.introLink}>University of Puerto Rico – Mayagüez</a>, with strong interests in <span className={styles.introEmphasis}>coding</span>, <span className={styles.introEmphasis}>problem-solving</span>, <span className={styles.introEmphasis}>mathematics</span>, and <span className={styles.introEmphasis}>science</span>. My long-term goal is to pursue a career as an <strong>AI researcher and engineer</strong>, and I am committed to building the technical expertise needed to achieve it.
               </p>
-              <p>
-                Currently, I am advancing my knowledge through coursework in <strong>Data Structures</strong> and gaining hands-on industry experience as a <i>software developer</i> at <strong>MiUni LLC</strong>. Beyond the classroom, I continuously explore <strong>new programming languages</strong> and <strong>frameworks</strong>, driven by a passion for <i>learning</i> and <i>growth</i> as a developer.
-              </p>
+                <p>
+                Currently, I am advancing my knowledge through coursework in <strong>Data Structures</strong> and continuously exploring <strong>new programming languages</strong> and <strong>frameworks</strong>, driven by a passion for <i>learning</i> and <i>growth</i> as a developer.
+                </p>
             </div>
             <div className={styles.aboutStats}>
               <div className={styles.stat}>
