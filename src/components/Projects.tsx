@@ -29,7 +29,7 @@ const Projects: React.FC = () => {
             {projectsInfo.map(project => (
               <div key={project.id} className={styles.projectCard} onClick={() => openModal(project)}>
                 <div className={styles.projectImage}>
-                  <img src={project.imageUrl} alt={project.title} />
+                  <img src={project.imageUrl} alt={project.title} decoding="async" loading="lazy" />
                   <div className={styles.imageOverlay}>
                     <span className={styles.clickHint}>Click for details</span>
                   </div>

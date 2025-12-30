@@ -44,6 +44,11 @@ const Hero: React.FC = () => {
                 src={profileImg}
                 alt="Harry Ruiz - Software Developer" 
                 className={styles.profileImage}
+                fetchPriority="high"
+                loading="eager"
+                decoding="async"
+                width="400"
+                height="400"
               />
             </div>
           </div>

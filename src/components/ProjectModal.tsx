@@ -36,6 +36,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
           src={src}
           alt={alt}
           loading="lazy"
+          decoding="async"
           onLoad={handleLoad}
           className={styles.galleryImage}
           draggable={false}
@@ -52,7 +53,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onClose })
         </button>
         
         <div className={styles.modalHeader}>
-          <img src={project.imageUrl} alt={project.title} className={styles.modalImage} />
+          <img src={project.imageUrl} alt={project.title} className={styles.modalImage} decoding="async" />
           <div className={styles.modalHeaderInfo}>
             <h2 className={styles.modalTitle}>{project.title}</h2>
             <div className={styles.projectMeta}>

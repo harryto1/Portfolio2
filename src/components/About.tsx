@@ -93,6 +93,8 @@ const About: React.FC = () => {
                       src={job.logoUrl} 
                       alt={`${job.company} logo`}
                       className={styles.companyLogo}
+                      decoding="async"
+                      loading="lazy"
                       onError={(e) => {
                         // Fallback to company initials if logo fails to load
                         e.currentTarget.style.display = 'none';
@@ -167,6 +169,8 @@ const About: React.FC = () => {
                       src={edu.logoUrl} 
                       alt={`${edu.institution} logo`}
                       className={styles.institutionLogo}
+                      decoding="async"
+                      loading="lazy"
                       onError={(e) => {
                         // Fallback to institution initials if logo fails to load
                         e.currentTarget.style.display = 'none';
